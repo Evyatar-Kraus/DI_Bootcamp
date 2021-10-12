@@ -5,10 +5,15 @@
 // Bonus: Change it to console.log “My 1st choice”, “My 2nd choice”, “My 3rd choice”, picking the correct suffix for each number.
 // Hint : create an array of suffixes to do the Bonus
 
-const colors = ['blue','red','yellow','azure','beige','white','black','grey','brown','maroon','purple','magenta','pink','orange','cyan'];
+let colors = ['blue','red','yellow','azure','beige','white','black','grey','brown','maroon','purple','magenta','pink','orange','cyan'];
+
+//for checking large numbers such as 21,22,23 and  111, 112, 113
+// colors = [...colors,...colors,...colors,...colors,...colors,...colors,...colors,...colors,...colors,...colors,...colors];
+
 colors.forEach((color,idx)=>{console.log(`my #${idx+1} choice is ${color}`)});
 
-//bonus
+//bonus - with the Intl internationalization obj and plural rules - otherwise just check how it ends
+
 const english_ordinal_rules = new Intl.PluralRules("en", {type: "ordinal"});
 const suffixes = {
     one: "st",
@@ -24,6 +29,31 @@ function ordinal(number) {
 
 colors.forEach((color,idx)=>{
     console.log(`my ${ordinal(idx+1)} is ${color}`);
+});
+
+// bonus 2# way - with num % 10 for last digit and num % 100 != 11 or 12 or 13 (they are th ending)
+// and suffix array - with special for 1, 2, 3  11, 12, 13
+colors.forEach((color,idx)=>{
+    let number = idx + 1;
+    let suffix = 'th';
+    if(number % 100 !== 11 && number % 100 !== 12 && number % 100 !== 13){
+        let last_digit = number % 10;
+        switch (last_digit) {
+            case 1:
+                suffix = 'st';
+                break;
+            case 2:
+                suffix = 'nd';
+                break;
+            case 3:
+                suffix = 'rd';
+                break;
+            default:
+                suffix = 'th';
+                break;
+        }
+    }
+    console.log(`my ${idx+1}${suffix} is ${color}`);
 });
 
 
