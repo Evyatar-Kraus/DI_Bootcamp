@@ -7,7 +7,6 @@ for (let i = 1; i <= 15; i++){
 	console.log( `${i} is ${i % 2 == 0 ? 'even': 'odd\n'}`);
 }
 
-
 /*Exercise 2
 let names= ["john", "sarah", 23, "Rudolf",34]
 1. Write a JavaScript for loop that will go through the variable names.
@@ -38,3 +37,13 @@ for (i = 0; i < names.length; i++){
 	}
 	console.log(names[i]);
 }
+
+
+let shopping = ['apple','pear','melon','banana'];
+//add s to every fruit - make plural
+shopping = shopping.map( (fruit) =>  `${fruit}s`);
+
+let prices = [23,15,34,10];
+//sum the prices
+console.log(prices.reduce( (prev,curr) => prev+curr ,0));
+
