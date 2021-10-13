@@ -308,6 +308,21 @@ console.log(tipCalculator()); // by prompt
 // It should ask the user for the number of nights they would like to stay in the hotel.
 // If the user doesn’t answer or if the answer is not a number, ask again.
 // The hotel costs $140 per night. The function should return the total price of the hotel.
+function hotelCost(nights){
+	const PRICE_PER_NIGHT = 140;
+	let numberOfNights = nights || parseInt(prompt("How many nights did your order at the hotel?"));
+	while(isNaN(numberOfNights)) {
+		//if  "If the user doesn’t answer" refers to pressing cancel on prompt window then i would add ||  numberOfNights === 'null' to the while
+		numberOfNights =parseInt(prompt("How many nights did your order at the hotel?"));
+	}
+	let totalCost = numberOfNights * PRICE_PER_NIGHT;
+	console.log(`You are staying at the hotel for ${numberOfNights} nights, the total cost will be ${totalCost}\n`)
+	return totalCost;
+}
+
+console.log(hotelCost());
+
+
 // Define a function called planeRideCost().
 // It should ask the user for their destination.
 // The function should return a different price depending on the location.
@@ -315,14 +330,69 @@ console.log(tipCalculator()); // by prompt
 // “Paris” : 220$
 // All other destination : 300$
 // If the user doesn’t answer or if the answer is not a string, ask again.
+function planeRideCost(destination){
+	const destinations = { paris:{price:220}, other:{price:300}, london:{price:183} }
+	let cost = 300;
+	let question = 'What is your destination?';
+	let chosenDestination = destination || prompt(question);
+	while( typeof(chosenDestination) !== 'string' || !isNaN(chosenDestination) ){ // a string and not just some number
+		chosenDestination = prompt(question);
+	}
+
+	if (chosenDestination.toLowerCase() in destinations) {
+		cost = destinations[chosenDestination.toLowerCase()].price;
+	}
+	console.log(`You are flying to ${chosenDestination} and this costs ${cost} \n`);
+	return cost;
+
+}
+console.log(planeRideCost());
+
+
+
 // Define a function called rentalCarCost().
 // It should ask the user for the number of days they would like to rent the car.
 // If the user doesn’t answer or if the answer is not a number, ask again.
 // Calculate the cost to rent the car. The car costs $40 everyday.
 // If the user rents a car for more than 10 days, they get a 5% discount.
 // The function should return the total price of the car rental.
-// Define a function called totalVacationCost() that returns the total cost of the user’s vacation by calling the 3 functions that you created above.
+
+function rentalCarCost(days){
+	const PRICE_PER_DAY  = 40;
+	let question = 'How many days are you renting?';
+	let numberOfDays = days || parseInt(prompt(question));
+	while(isNaN(numberOfDays)) {
+		//if  "If the user doesn’t answer" refers to pressing cancel on prompt window then i would add ||  numberOfNights === 'null' to the while
+		numberOfDays =parseInt(prompt(question));
+	}
+
+	let totalCost = numberOfDays * PRICE_PER_DAY;
+	console.log(`You are renting the car for ${numberOfDays} nights, the total cost will be ${totalCost}\n`)
+	return totalCost;
+}
+console.log(rentalCarCost());
+
+
+// Define a function called totalVacationCost() that returns the total cost of the user’s
+//  vacation by calling the 3 functions that you created above.
 // Example : The car cost: $x, the hotel cost: $y, the plane tickets cost: $z.
 // Hint: You have to call the functions hotelCost(), planeRideCost() and rentalCarCost() inside the function totalVacationCost.
 // Call the function totalVacationCost()
 // Bonus: Instead of using a prompt inside the 3 first functions, only use a prompt inside the totalVacationCost() function.
+function totalVacationCost(){
+	let totalVacationCost = hotelCost() + planeRideCost() + rentalCarCost();
+	console.log(`The total cost of the vacation: ${totalVacationCost}`);
+}
+console.log(totalVacationCost());
+
+
+//Bonus
+// function totalVacationCost(){
+// 	let totalVacationCost;
+// 	let hotelNights = parseInt(prompt("How many hotel nights?"));
+// 	let destination = prompt("Where are you flying to?"));
+// 	let rentalDays = parseInt(prompt("How many hotel nights?"));
+// 	totalVacationCost = hotelCost(hotelNights) + planeRideCost(destination) + rentalCarCost(rentalDays);
+// 	return totalVacationCost;
+// }
+// console.log(totalVacationCost());
