@@ -331,8 +331,9 @@ console.log(hotelCost());
 // All other destination : 300$
 // If the user doesn’t answer or if the answer is not a string, ask again.
 function planeRideCost(destination){
-	const destinations = { paris:{price:220}, other:{price:300}, london:{price:183} }
-	let cost = 300;
+	const GENERAL_COST = 300;
+	const destinations = { paris:{price:220} , london:{price:183} }
+	let cost = GENERAL_COST;
 	let question = 'What is your destination?';
 	let chosenDestination = destination || prompt(question);
 	while( typeof(chosenDestination) !== 'string' || !isNaN(chosenDestination) ){ // a string and not just some number
@@ -379,20 +380,22 @@ console.log(rentalCarCost());
 // Hint: You have to call the functions hotelCost(), planeRideCost() and rentalCarCost() inside the function totalVacationCost.
 // Call the function totalVacationCost()
 // Bonus: Instead of using a prompt inside the 3 first functions, only use a prompt inside the totalVacationCost() function.
+
+// 9 - NOT BONUS
 function totalVacationCost(){
 	let totalVacationCost = hotelCost() + planeRideCost() + rentalCarCost();
 	console.log(`The total cost of the vacation: ${totalVacationCost}`);
 }
-console.log(totalVacationCost());
-
-
-//Bonus
-// function totalVacationCost(){
-// 	let totalVacationCost;
-// 	let hotelNights = parseInt(prompt("How many hotel nights?"));
-// 	let destination = prompt("Where are you flying to?"));
-// 	let rentalDays = parseInt(prompt("How many hotel nights?"));
-// 	totalVacationCost = hotelCost(hotelNights) + planeRideCost(destination) + rentalCarCost(rentalDays);
-// 	return totalVacationCost;
-// }
 // console.log(totalVacationCost());
+
+
+// Bonus
+function totalVacationCost(){
+	let totalVacationCost;
+	let hotelNights = parseInt(prompt("How many hotel nights?"));
+	let destination = prompt("Where are you flying to?");
+	let rentalDays = parseInt(prompt("How many hotel nights?"));
+	totalVacationCost = hotelCost(hotelNights) + planeRideCost(destination) + rentalCarCost(rentalDays);
+	return totalVacationCost;
+}
+console.log(totalVacationCost())
