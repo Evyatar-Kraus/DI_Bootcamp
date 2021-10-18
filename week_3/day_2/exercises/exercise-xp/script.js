@@ -75,8 +75,8 @@ function getTableElemFromFormValues(values, ref) {
     }else{
         let newTableEl = document.createElement('table');
         let tHead = newTableEl.createTHead();
-        // let tHeadRow = tHead.insertRow();
-        // let tBody = newTableEl.createTBody();
+        let tHeadRow = tHead.insertRow();
+        let tBody = newTableEl.createTBody();
         existingTable = newTableEl;
         attachLocation.appendChild(newTableEl)
     }
