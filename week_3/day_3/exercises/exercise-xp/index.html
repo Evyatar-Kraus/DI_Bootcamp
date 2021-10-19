@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css?family=PT+Sans" rel="stylesheet">
+  <!-- <link rel="stylesheet" type="text/css" href="style.css"> -->
+  <style>
+    #container {
+      width: 400px;
+      height: 400px;
+      position: relative;
+      background: yellow;
+      overflow:hidden;
+    }
+
+    #animate {
+      width: 50px;
+      height: 50px;
+      position: absolute;
+      background-color: red;
+    }
+
+    * {
+      box-sizing: border-box;
+      outline: 0;
+    }
+
+    section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 10px;
+    }
+
+    .dropbox {
+      width: 100px;
+      height: 100px;
+      border: 2px solid black;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .movingbox {
+      width: 90px;
+      height: 90px;
+      padding: 2px;
+      border: 2px solid green;
+      border-radius: 20%;
+      background-color: lightgreen;
+    }
+
+    .startDragging {
+      border: 2px solid blue;
+      border-radius: 40%;
+      background-color: lightblue;
+    }
+  </style>
+  <title></title>
+</head>
+
+<body>
+  <p><button onclick="myMove()">Click Me</button></p>
+  <div id="container">
+    <div id="animate"></div>
+  </div>
+
+  <section>
+    <div class="dropbox"></div>
+  </section>
+  <div id="item" class="movingbox" draggable="true"></div>
+  <script src="script.js"></script>
+</body>
+
+</html>
