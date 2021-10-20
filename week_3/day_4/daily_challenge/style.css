@@ -1,0 +1,28 @@
+/* general elements css */
+html,body{
+    width:100%;
+    height:100%;
+    padding:0;
+    margin:0;
+    border:0;
+    overflow: auto;
+    box-sizing: border-box;
+}
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+button{
+    border:0;
+    text-transform: none;
+    -webkit-appearance: button;
+    text-decoration: none;
+    background: none;
+}
+
+/* container */
+#container{
+    height: 100%;
+
+}
