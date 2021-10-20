@@ -40,6 +40,5 @@ function createGameSetup(){
 
 }
 window.addEventListener("load", function(){
-
     createGameSetup();
 });

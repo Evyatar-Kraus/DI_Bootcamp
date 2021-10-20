@@ -36,7 +36,7 @@ export const colorBtnClick = (e) =>{
     let clickedEl = e.target;
     let clickedElColor = clickedEl.dataset.colorDesc;
     setState('chosenColor',clickedElColor);
-    console.log(clickedElColor);
+    // console.log(clickedElColor);
 };
 
 export const createColorBtn = (color) =>{
