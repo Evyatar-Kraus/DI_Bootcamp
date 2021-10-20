@@ -3,9 +3,15 @@ import {colors, initialGameBoard, cellCount} from './constants.js';
 import * as importedMethodsObj from './methods.js'
 Object.assign(window,importedMethodsObj);
 
+const coloringGameState = {
+    chosenColor:null
+}
+window.coloringGameState = coloringGameState ;
+
 function colorPanelSetup(colorPanelElemRef){
     colorPanelElemRef.innerHTML = createColorPanel(colorPanelElemRef, colors);
 }
+
 function coloringBoardSetup(coloringBoardElemRef){
     let cells = [...Array(cellCount).keys()].forEach( (el) => {
         coloringBoardElemRef.innerHTML+=createCell();
@@ -15,6 +21,7 @@ function coloringBoardSetup(coloringBoardElemRef){
 //starting the game only when contents are loaded
 function createGameSetup(){
     //chosen color - by click - on color panel
+
     let chosenColor = null;
 
     //color panel setup
@@ -32,5 +39,6 @@ function createGameSetup(){
 
 }
 window.addEventListener("load", function(){
+
     createGameSetup();
 });

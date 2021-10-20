@@ -1,8 +1,21 @@
 'use strict'
 import {colors} from './constants.js';
 
+const getFromState = (keyName)=>{
+    if(window.coloringGameState){
+        return window.coloringGameState[keyName] ?? null;
+    }
+}
+const setState = (keyName, val)=>{
+    if(window.coloringGameState){
+        const newState = {...window.coloringGameState, [keyName]:val};
+        window.coloringGameState = newState;
+        return newState;
+    }
+    return null;
+}
 export const clearColors = (board) =>{
-    
+
     return board;
 };
 export const createCell = () =>{
@@ -11,17 +24,19 @@ export const createCell = () =>{
 };
 
 export const paintCell = (e) =>{
+    let colorToPaint = getFromState('chosenColor');
+    if(!colorToPaint) return;
     let cell = e.target;
     if(e.type === 'click' || (e.type === "mouseover" && e.buttons === 1) ){
-        cell.style.backgroundColor = chosenColor;
+        cell.style.backgroundColor = colorToPaint;
     }
-
 };
 
 export const colorBtnClick = (e) =>{
     let clickedEl = e.target;
     let clickedElColor = clickedEl.dataset.colorDesc;
-    chosenColor = clickedElColor;
+    setState('chosenColor',clickedElColor);
+    console.log(clickedElColor);
 };
 
 export const createColorBtn = (color) =>{
