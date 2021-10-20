@@ -1,5 +1,5 @@
 'use strict'
-import {colors, initialGameBoard, cellCount} from './constants.js';
+import {colors, cellCount} from './constants.js';
 import * as importedMethodsObj from './methods.js'
 Object.assign(window,importedMethodsObj);
 
@@ -13,17 +13,18 @@ function colorPanelSetup(colorPanelElemRef){
 }
 
 function coloringBoardSetup(coloringBoardElemRef){
-    let cells = [...Array(cellCount).keys()].forEach( (el) => {
-        coloringBoardElemRef.innerHTML+=createCell();
+    let boardHTMLStr = '';
+    [...Array(cellCount).keys()].forEach( () => {
+        let newCell = importedMethodsObj.createCell();
+        boardHTMLStr +=newCell
+        // console.log(boardHTMLStr);
     });
+    window.coloringGameState.initialGameBoard = boardHTMLStr;
+    coloringBoardElemRef.innerHTML = window.coloringGameState.initialGameBoard;
 }
 
 //starting the game only when contents are loaded
 function createGameSetup(){
-    //chosen color - by click - on color panel
-
-    let chosenColor = null;
-
     //color panel setup
     const colorPanelEl = document.querySelector(".rows-colors");
     colorPanelSetup(colorPanelEl);

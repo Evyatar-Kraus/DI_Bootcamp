@@ -4,7 +4,7 @@ export const colors = ['red', 'orangered', 'orange', 'yellow', 'yellowgreen',
  'dodgerblue', 'blue', 'darkblue', 'indigo', 'darkmagenta',
  'violet', 'lightpink', 'lightgray', 'gray', 'black', 'white'];
 
-export const initialGameBoard = [];
+// export const initialGameBoard = [];
 export const cellCount = 500;
 // const constants = {
 //     colors

@@ -14,9 +14,9 @@ const setState = (keyName, val)=>{
     }
     return null;
 }
-export const clearColors = (board) =>{
 
-    return board;
+export const clearColors = (boardElemRef) =>{
+    boardElemRef.innerHTML = window.coloringGameState.initialGameBoard;
 };
 export const createCell = () =>{
     return `<div onclick="paintCell(event)"
