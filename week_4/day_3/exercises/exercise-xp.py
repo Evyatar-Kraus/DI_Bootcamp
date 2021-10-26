@@ -50,12 +50,12 @@ pprint("Exercise 2:")
 family = {"rick": 43, 'beth': 13, 'morty': 5, 'summer': 8}
 
 ###uncomment for bonus###
-# family = {}
-# while input("Please press enter to continue to fill a name and a price; to exit write 'quit': ") != 'quit':
-#     person_name = input("Please enter a person name\n")
-#     person_age = int(input("Please enter age - int:\n"))
-#     family[person_name] = person_age
-# pprint(family)
+family = {}
+while input("Please press enter to continue to fill a name and a price; to exit write 'quit': ") != 'quit':
+    person_name = input("Please enter a person name\n")
+    person_age = int(input("Please enter age - int:\n"))
+    family[person_name] = person_age
+pprint(family)
 
 total_cost = 0
 for person, age in family.items():
@@ -68,7 +68,8 @@ for person, age in family.items():
     total_cost += person_price
     pprint(f"{person} has to pay ${person_price}")
 
-pprint(f'The family total cost is ${total_cost} \n')
+pprint(f'The family total cost is ${total_cost}')
+print("\n")
 
 # Exercise 3: Zara
 # Instructions
@@ -207,29 +208,98 @@ print(brand.get('number_stores'))
 # Exercise 4 : Disney Characters
 # Instructions
 # Use this list :
-
 # users = [ "Mickey", "Minnie", "Donald","Ariel","Pluto"]
 # Analyse these results :
+
+pprint("Exercise 4:")
+users = [ "Mickey", "Minnie", "Donald","Ariel","Pluto"]
 
 # #1/
 
 # >>> print(disney_users_A)
-# {"Mickey": 0, "Minnie": 1, "Donald": 2, "Ariel": 3, "Pluto": 4}
+# {"Mickey": 0, "Minnie": 1, "Donald": 2, "Ariel": 3,
+#  "Pluto": 4}
 
-# #2/
+#1st way
+# disney_users_A = {}
+# idx = 0
+# for val in users:
+#     disney_users_A[val] = idx
+#     idx +=1
+# print(disney_users_A)
 
+#2nd way
+# disney_users_A = {}
+# for idx,val in enumerate(users):
+#     disney_users_A[val] = idx
+# print(disney_users_A)
+
+#3rd way -> with Dictionary  comprehension
+disney_users_A = {val:idx  for (idx,val) in enumerate(users)}
+print(disney_users_A)
+
+
+# #2
 # >>> print(disney_users_B)
-# {0: "Mickey",1: "Minnie", 2: "Donald", 3: "Ariel", 4: "Pluto"}
+# {0: "Mickey",1: "Minnie", 2: "Donald", 3: "Ariel",
+#  4: "Pluto"}
+
+#1st way
+# disney_users_B = {}
+# for idx, val in enumerate(users):
+#     disney_users_B[idx] = val
+
+disney_users_B = {idx:val  for (idx,val) in enumerate(users)}
+print(disney_users_B)
+
+
 
 # #3/
 
 # >>> print(disney_users_C)
-# {"Ariel": 0, "Donald": 1, "Mickey": 2, "Minnie": 3, "Pluto": 4}
+# {"Ariel": 0, "Donald": 1, "Mickey": 2, "Minnie": 3,
+#  "Pluto": 4}
+
+#1st way
+# disney_users_C = {}
+# sorted_names = sorted(users)
+# for idx, name in enumerate(sorted_names):
+#     disney_users_C[name] = idx
+# print(disney_users_C)
+
+disney_users_C = { val:idx  for (idx,val) in enumerate(sorted(users))}
+print(disney_users_C)
+
+#4
+#1st way
+# disney_users_D = {}
+# for idx, val in enumerate(users):
+#     if 'i' in val.lower():
+#         disney_users_D[val] = idx
+# print(disney_users_D)
+
+disney_users_D = {val:idx  for (idx,val) in enumerate(users) if 'i' in val.lower()}
+print(disney_users_D)
+
+#5
+#1st way
+# disney_users_E = {}
+# for idx, val in enumerate(users):
+#     if val.lower()[0] == 'm' or val[0].lower() == 'p': #both lowering work
+#         disney_users_E[val] = idx
+# print(disney_users_E)
+
+disney_users_E = {val:idx  for (idx,val) in enumerate(users) if val.lower()[0] == 'm' or val[0].lower() == 'p'}
+print(disney_users_E)
 
 
-# Use a for loop to recreate the 1st result. Tip : don’t hardcode the numbers.
-# Use a for loop to recreate the 2nd result. Tip : don’t hardcode the numbers.
-# Use a method to recreate the 3rd result. Hint: The 3rd result is sorted alphabetically.
+# Use a for loop to recreate the 1st result.
+# Tip : don’t hardcode the numbers.
+# Use a for loop to recreate the 2nd result.
+#  Tip : don’t hardcode the numbers.
+# Use a method to recreate the 3rd result.
+#  Hint: The 3rd result is sorted alphabetically.
 # Only recreate the 1st result for:
 # The characters, which names contain the letter “i”.
-# The characters, which names start with the letter “m” or “p”.
+# The characters, which names start with the
+#  letter “m” or “p”.
