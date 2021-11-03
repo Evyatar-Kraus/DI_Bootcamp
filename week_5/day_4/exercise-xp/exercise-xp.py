@@ -1,7 +1,6 @@
 # What You Will Learn
 # Working with files
 
-
 # Exercise 1 – Random Sentence Generator
 # Instructions
 # Description: In this exercise we will create a random sentence generator. We will do this by asking the user how long the sentence should be and then printing the generated sentence.
@@ -72,30 +71,48 @@ def main():
         print(sentence)
     except ValueError:
         print("You entered incorrect data. This program will terminate itslef")
-    
+
 
 if __name__ == "__main__":
-    main()
+    # main()
+    pass
 
 
 
 # Exercise 2: Working With JSON
 # Instructions
-# import json
-# sampleJson = """{ 
-#    "company":{ 
-#       "employee":{ 
-#          "name":"emma",
-#          "payable":{ 
-#             "salary":7000,
-#             "bonus":800
-#          }
-#       }
-#    }
-# }"""
+import json
+sampleJson = """{
+   "company":{
+      "employee":{
+         "name":"emma",
+         "payable":{
+            "salary":7000,
+            "bonus":800
+         }
+      }
+   }
+}"""
 
 print("\n\nExercise 2")
-
+json_dict = json.loads(sampleJson)
 # Access the nested “salary” key from the JSON-string above.
+salary =  json_dict['company']['employee']['payable']['salary']
+print(salary)
 # Add a key called “birth_date” to the JSON-string at the same level as the “name” key.
+json_dict['company']['employee']['birth_date'] = '10/10/1995'
+print(json_dict)
+
+new_json_string = json.dumps(json_dict)
 # Save the dictionary as JSON to a file.
+
+file_path = 'workfile.txt'
+
+#1st way
+# with open(file_path, "w") as work_file:
+#     work_file.write(new_json_string)
+
+#2nd way
+f = open(file_path, "w")
+new_json_string = json.dump(json_dict,open(file_path, "w"))
+f.close()
