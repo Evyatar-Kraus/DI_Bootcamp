@@ -70,11 +70,11 @@ def main():
         print("We have a sentence for you:",end="\n")
         print(sentence)
     except ValueError:
-        print("You entered incorrect data. This program will terminate itslef")
+        print("You entered incorrect data. This program will terminate itself")
 
 
 if __name__ == "__main__":
-    # main()
+    main()
     pass
 
 
