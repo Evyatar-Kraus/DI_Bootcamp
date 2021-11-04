@@ -21,7 +21,11 @@ class Text():
 # a method to return the frequency of a word in the text (assume words are separated by whitespace) return None or a meaningful message .
     def get_word_frequency(self, word):
         """return how many times a word appears in the text"""
-        return self.get_word_list().count(word.lower())
+        freq =  self.get_word_list().count(word.lower())
+        if freq == 0:
+            return None
+        else:
+            return freq
 
 
 # a method that returns the most common word in the text.
@@ -43,7 +47,7 @@ class Text():
 
 # a classmethod that returns a Text instance but with a text file: >>> Text.from_file('the_stranger.txt')
     @classmethod
-    def createTextFromFile(cls,file_path):
+    def from_file(cls,file_path):
         with open(file_path, 'r') as file:
             text = file.read()
         return cls(text)
@@ -97,7 +101,7 @@ with open(file_path, 'r') as file:
 
 print(file_text.lower().count('stranger'))
 # print(file_text)
-textObj = Text.createTextFromFile(file_path)
+textObj = Text.from_file(file_path)
 print("Most common word")
 print(textObj.get_most_common_word())
 # print("\n\n\nUnique words\n")
@@ -117,7 +121,7 @@ print(textObj.get_word_frequency('and'))
 
 
 file_path = 'the_stranger.txt'
-textModObj = TextModification.createTextFromFile(file_path)
+textModObj = TextModification.from_file(file_path)
 # print(textModObj.get_text_without_punctuation())
 textModObj2 = TextModification(file_text)
 print(file_text.lower().split().count('and'))
