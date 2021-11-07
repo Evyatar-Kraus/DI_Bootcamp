@@ -1,1 +1,1 @@
-SELECT COUNT(* FROM actors;
+SELECT COUNT(*) FROM actors;
