@@ -1,0 +1,1 @@
+select * from public.customers where last_name = 'Smith';
