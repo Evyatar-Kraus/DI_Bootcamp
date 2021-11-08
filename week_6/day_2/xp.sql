@@ -130,25 +130,36 @@ select film_id, title,rental_rate,description,length from film  where film.title
 select film_id, title,rental_rate,description,length from film  where film.title='Jurassic Park';
 
 
+
 -- No luck finding your movie? Maybe you made a mistake spelling the
 -- name. Write a query to get the film ID, title, description, length and the
 --  rental rate of all the movies starting with the two first letters of your favorite movie.
+select film_id, title,rental_rate,description,length from film where film.title ilike 'gr%';
+select film_id, title,rental_rate,description,length from film where film.title ilike 'ju%';
+
 
 -- Write a query which will find the 10 cheapest movies.
+select * from film order by rental_rate ASC limit 10;
 
 -- Not satisfied with the results. Write a query which will find the
 -- next 10 cheapest movies.
 -- Bonus: Try to not use LIMIT.
+--with bonus
+select * from film order by rental_rate FETCH first 10 row only offset 10;
+select * from film order by rental_rate FETCH next  10 row only offset 10;
 
 -- Write a query which will join the data in the customer table and the
 -- payment table. You want to get the amount and the date of every payment made by
 -- a customer, ordered by their id (from 1 to…).
+-- also added the name
+select payment.customer_id ,first_name || ' ' ||last_name as full_name ,amount,payment_date from payment
+inner join customer
+on  payment.customer_id = customer.customer_id
+order by payment.customer_id;
 
 -- You need to check your inventory. Write a query to get all the movies
 --  which are not in inventory.
+ select * from film where film_id   in (select film_id from inventory) order by title ASC;
 
 -- Write a query to find which city is in which country.
-
--- Bonus You want to be able to see how your sellers have been doing?
---  Write a query to get the customer’s id, names (first and last), the amount and
---  the date of payment ordered by the id of the staff member who sold them the dvd.
+select city,country from city inner join country on city.country_id = country.country_id order by city ASC;
