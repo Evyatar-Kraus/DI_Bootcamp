@@ -29,6 +29,7 @@ select last_name from customers WHERE last_name is not NULL ORDER BY last_name D
 -- 2
 
 CREATE TABLE purchases(
+id  SERIAL PRIMARY KEY,
 customer_id INTEGER NOT NULL,
 item_id INTEGER NOT NULL,
 FOREIGN KEY (customer_id) REFERENCES customers(id),
@@ -65,3 +66,30 @@ select customers.first_name, customers.last_name, purchases.item_id from purchas
  INNER JOIN items
  on items.id = purchases.item_id WHERE LOWER(items.product_name) =  'large desk'
  OR LOWER(items.product_name) = 'small desk';
+
+ --4 - also returned the purchase details
+insert into items (product_name, product_cents_price) VALUES ('Hard disk', 20000);
+
+INSERT into purchases (customer_id,item_id)
+VALUES ((SELECT id from customers WHERE first_name = 'Scott' and last_name = 'Scott'),
+        (SELECT id from items WHERE LOWER(product_name) = 'hard disk'))
+returning customer_id, item_id;
+
+--5.1
+select first_name from customers inner join purchases on customers.id = purchases.customer_id;
+-- another way
+select first_name from customers where id in (select customer_id from purchases)
+--5.2
+select last_name from customers inner join purchases on customers.id = purchases.customer_id;
+--another way
+select last_name from customers where id in (select customer_id from purchases)
+
+--5.3
+-- if it means to show a way to show the names of clients and what they bought
+--also one way to do it if i understood correctly
+SELECT customers.first_name,customers.last_name, items.product_name
+FROM purchases
+    INNER JOIN customers
+        ON purchases.customer_id = customers.id
+    INNER JOIN items
+        ON purchases.item_id = items.id;
