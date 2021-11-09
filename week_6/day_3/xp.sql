@@ -95,11 +95,15 @@ select film.film_id, film.title as "movie title", film.rental_rate as price, inv
 inner join inventory on film.film_id = inventory.film_id where inventory.inventory_id in (select rental.inventory_id from rental)
 order by rental_rate DESC limit 30
 
-
 -- Your friend is at the store, and decides to rent a movie. He knows he wants to see
 -- 4 movies, but he can’t remember their names. Can you help him find which movies he wants to rent?
 -- The 1st film : The film is about a sumo wrestler, and one of the actors
 --  is Penelope Monroe.
+select first_name, last_name, actor.actor_id, title, film.description from film_actor inner join
+actor on film_actor.actor_id = actor.actor_id
+inner join film on film.film_id = film_actor.film_id
+where first_name = 'Penelope' and last_name = 'Monroe'
+and description ilike  '%sumo wrestler%';
 
 -- The 2nd film : A short documentary (less than 1 hour long), rated “R”.
 
