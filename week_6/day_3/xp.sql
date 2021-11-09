@@ -127,3 +127,12 @@ and to_timestamp('2005-01-08','YYYY-DD-MM'));
 
 -- The 4th film : His friend Matthew Mahan watched this film, as well.
 --  It had the word “boat” in the title or description, and it looked like it was a very expensive DVD to replace.
+
+select first_name, last_name, film.title, description, film.film_id, replacement_cost,
+rental.return_date, rental.rental_id,
+inventory.inventory_id
+from film inner join inventory on film.film_id = inventory.film_id
+inner join rental on rental.inventory_id = inventory.inventory_id
+inner join customer on customer.customer_id = rental.customer_id
+where customer.first_name = 'Matthew' and last_name = 'Mahan'
+and (description ilike   '%boat%' or title ilike '%boat%') order by replacement_cost desc limit 1;
