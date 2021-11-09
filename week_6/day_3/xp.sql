@@ -107,8 +107,23 @@ and description ilike  '%sumo wrestler%';
 
 -- The 2nd film : A short documentary (less than 1 hour long), rated “R”.
 
+select title,rating,category.name, length from film_category
+inner join film on film_category.film_id = film.film_id
+inner join category on category.category_id = film_category.category_id
+where category.name = 'Documentary' and rating = 'R' and length < 60;
+
 -- The 3rd film : A film that his friend Matthew Mahan rented. He paid over
 --  $4.00 for the rental, and he returned it between the 28th of July and the 1st of August, 2005.
+
+
+select first_name, last_name, film.title, film.film_id, rental.return_date, rental.rental_id, inventory.inventory_id
+from film inner join inventory on film.film_id = inventory.film_id
+inner join rental on rental.inventory_id = inventory.inventory_id
+inner join customer on customer.customer_id = rental.customer_id
+where customer.first_name = 'Matthew' and last_name = 'Mahan'
+and  rental_rate > 4.00
+and (return_date between to_timestamp('2005-28-07','YYYY-DD-MM')
+and to_timestamp('2005-01-08','YYYY-DD-MM'));
 
 -- The 4th film : His friend Matthew Mahan watched this film, as well.
 --  It had the word “boat” in the title or description, and it looked like it was a very expensive DVD to replace.
