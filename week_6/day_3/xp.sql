@@ -60,8 +60,51 @@ INSERT INTO customer_review(title, score, review_text,film_id,language_id) value
 -- Delete a film that has a review from the new_film table,
 DELETE FROM new_film where new_film.id in (select film_id from customer_review LIMIT 1) returning *;
 
-
 -- what happens to the customer_review table?
 -- ANSWER the review related to this movie also got deleted because of the on delete cascade since the child table
 -- that references the key on parent table
 -- will delete the  rows that were related by a foreign key to the rows with the primary keys that were deleted.
+
+
+
+-- Instructions
+-- Use UPDATE to change the language of some films. Make sure that you use valid languages.
+UPDATE film set language_id = (select language.language_id from language order by random() limit 1)
+where film_id in (select film_id from film order by film.film_id limit 3) returning film_id,title,language_id;
+
+-- Which foreign keys (references) are defined for the customer table? How does this affect the way
+-- in which we INSERT into the customer table?
+-- we need to insert an address_id to match one of the addresses in address table with that id
+-- the key customer_address_id_fkey
+
+
+-- We created a new table called customer_review. Drop this table. Is this an easy step,
+-- or does it need extra checking?
+DROP TABLE IF EXISTS customer_review;
+-- we can check if table exists
+-- we need to check if there are foreign keys that reference this table's primary key
+-- no table refrences this one's primary key so it was easy
+
+
+-- Find out how many rentals are still outstanding (ie. have not been returned to the
+-- store yet).
+select count(*) from inventory where inventory.inventory_id in (select rental.inventory_id from rental)
+
+-- Find the 30 most expensive movies which are outstanding (ie. have not been returned to the store yet)
+select film.film_id, film.title as "movie title", film.rental_rate as price, inventory.inventory_id from film
+inner join inventory on film.film_id = inventory.film_id where inventory.inventory_id in (select rental.inventory_id from rental)
+order by rental_rate DESC limit 30
+
+
+-- Your friend is at the store, and decides to rent a movie. He knows he wants to see
+-- 4 movies, but he can’t remember their names. Can you help him find which movies he wants to rent?
+-- The 1st film : The film is about a sumo wrestler, and one of the actors
+--  is Penelope Monroe.
+
+-- The 2nd film : A short documentary (less than 1 hour long), rated “R”.
+
+-- The 3rd film : A film that his friend Matthew Mahan rented. He paid over
+--  $4.00 for the rental, and he returned it between the 28th of July and the 1st of August, 2005.
+
+-- The 4th film : His friend Matthew Mahan watched this film, as well.
+--  It had the word “boat” in the title or description, and it looked like it was a very expensive DVD to replace.
