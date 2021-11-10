@@ -22,24 +22,35 @@ select employee_id, first_name, last_name, salary from employees order by salary
 select employee_id, first_name, last_name, salary from employees order by salary;
 
 -- Write a query to get the total sum of all salaries paid to the employees.
-
+select SUM(salary) as total_salary_sum from employees
 -- Write a query to get the maximum and minimum salaries paid to the employees.
+select MAX(salary) as max_salary, MIN(salary) as min_salary  from employees
 
 -- Write a query to get the average salary paid to the employees.
+--also allowed only 2 decimal places
+select ROUND(avg(salary)::numeric,2) from employees;
 
 -- Write a query to get the number of employees working in the company.
 
+select count(*) from employees;
+
+
 -- Write a query to get all the first names from the employees table in upper case.
 
--- Write a query to get the first three characters of each first name of all the employees in the employees table.
+select upper(first_name) from employees;
 
--- Write a query to get the full names of all the employees in the employees table. You have to include the first name and last name.
+-- Write a query to get the first three characters of each first name of all the employees
+-- in the employees table.
+select substring(first_name from 1 for 3) as first_name_first_3_letters from employees;
+
+-- Write a query to get the full names of all the employees in the employees table.
+--  You have to include the first name and last name.
+select  first_name || '' || last_name as "Full Name"  from employees;
 
 -- Write a query to get the first name, last name and the length of the full name
 -- of all the employees from the employees table.
 
 select first_name, last_name, length(first_name || last_name) from employees;
-
 
 -- Write a query to check whether the first_name column of the employees table
 --  contains any numbers.
