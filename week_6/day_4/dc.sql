@@ -34,3 +34,18 @@ inner join items on items.item_id = orders.item_id
 --  An order can have many items, but an item can belong to only one order.
 
 -- Create a function that returns the total price for a given order.
+CREATE or REPLACE FUNCTION total_order_price(wanted_order_id integer)
+RETURNS numeric AS $total_price_for_order$
+BEGIN
+    if exists(select order_id from orders where order_id = wanted_order_id) Then
+        RETURN(SELECT SUM(price) from orders
+            inner join items on items.item_id = orders.item_id
+            where orders.order_id = wanted_order_id);
+    else RETURN  NULL;
+	END if;
+END;
+$total_price_for_order$ LANGUAGE plpgsql;
+
+
+
+SELECT * FROM total_order_price(1);
