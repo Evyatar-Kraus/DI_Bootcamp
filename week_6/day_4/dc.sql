@@ -49,3 +49,7 @@ $total_price_for_order$ LANGUAGE plpgsql;
 
 
 SELECT * FROM total_order_price(1);
+SELECT * FROM total_order_price(2);
+SELECT * FROM total_order_price(3);
+SELECT * FROM total_order_price(4);
+SELECT * FROM total_order_price(100);
