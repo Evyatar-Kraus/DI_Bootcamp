@@ -1,0 +1,98 @@
+[
+    {
+        "model": "gifs.category",
+        "pk": 1,
+        "fields": {
+            "category_name":"emotions",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 2,
+        "fields": {
+            "category_name":"actions",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 3,
+        "fields": {
+            "category_name":"celebrities",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 4,
+        "fields": {
+            "category_name":"greetings",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 5,
+        "fields": {
+            "category_name":"games",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 6,
+        "fields": {
+            "category_name":"holiday",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 7,
+        "fields": {
+            "category_name":"interests",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 8,
+        "fields": {
+            "category_name":"movies",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 9,
+        "fields": {
+            "category_name":"tv",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 10,
+        "fields": {
+            "category_name":"news",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 11,
+        "fields": {
+            "category_name":"emotions",
+            "gifs":[]
+        }
+    },
+    {
+        "model": "gifs.category",
+        "pk": 12,
+        "fields": {
+            "category_name":"cars",
+            "gifs":[]
+        }
+    }
+]

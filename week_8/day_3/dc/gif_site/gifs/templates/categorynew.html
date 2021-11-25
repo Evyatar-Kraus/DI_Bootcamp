@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add new category</title>
+
+</head>
+<body>
+<h1>Add new category:</h1>
+<form method="post">
+    {% csrf_token %}
+    {{ form.as_table }}
+    <button type="submit">submit</button>
+</form>
+</body>
+</html>
