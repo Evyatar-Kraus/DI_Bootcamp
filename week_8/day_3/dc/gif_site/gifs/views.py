@@ -22,9 +22,7 @@ def new_gif(request):
             print(form.cleaned_data)
             categories = form.cleaned_data.pop('categories')
             gif = Gif.objects.create(**form.cleaned_data)
-            for cat in categories:
-                cat.gifs.add(gif)
-                print(cat.gifs.all())
+            gif.categories.set(categories)
             return redirect('gif_page',gif.id)
     if request.method == 'GET':
         form = GifForm()
@@ -34,14 +32,10 @@ def new_category(request):
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
-            # print(form.cleaned_data)
             print(form.cleaned_data)
             category = Category.objects.create(category_name=form.cleaned_data.get('category_name'))
-            # category.gifs = (form.cleaned_data.get('gifs'))
             gifs = form.cleaned_data.get('gifs')
-            for gif in gifs:
-                gif.categories.add(category)
-                print(gif.categories.all())
+            category.gifs.set(gifs)
             return redirect('category_page',category.id)
     if request.method == 'GET':
         form = CategoryForm()
