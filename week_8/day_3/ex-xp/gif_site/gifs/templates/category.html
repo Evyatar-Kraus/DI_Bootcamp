@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category - {{category.category_name}}</title>
+</head>
+
+<body>
+    <h1>
+        Category - {{category.category_name}}
+    </h1>
+    {% if category.gifs %}
+    <h2>
+        {{category.category_name}} Gifs:
+    </h2>
+    {% for gif in category.gifs.all %}
+    <div class="cat-gif">
+
+        <img src="{{gif.url}}" alt="{{gif.title}}">
+        <p>
+            uploaded by {{gif.uploader_name}}
+        </p>
+        <a href="{% url 'gif_page' gif.id %}">link to gif</a>
+    </div>
+    {% endfor %}
+    {% endif %}
+</body>
+
+</html>
